@@ -1,0 +1,127 @@
+stackbitVersion: ~0.2.0
+ssgName: custom
+buildCommand: gatsby build
+publishDir: public
+pagesDir: content
+staticDir: src
+dataDir: data
+uploadDir: images
+models:
+  metadata:
+    type: data
+    label: Site Metadata
+    file: "site-metadata.json"
+    fields:
+      - type: string
+        name: title
+        label: Podcast Title
+        required: true
+        description: The title of the podcast
+      - type: string
+        name: description
+        label: PodcastDescription
+      - type: string
+        name: author
+        label: Author
+  themeui:
+    type: data
+    label: Theme UI
+    file: "theme-ui.json"
+    description: "Controls the theme's appearance"
+    fields:
+      - type: boolean
+        name: useCustomProperties
+        label: Use Custom Properties
+        default: false
+      - type: string
+        name: initialColorMode
+        label: Initial Color Mode
+        default: "dark"
+      - type: object
+        name: colors
+        label: Theme Colors
+        description: "The colors used in the theme (can use RGBA, hex, or name notations)"
+        fields:
+          - type: string
+            name: text
+            label: Text Color
+            default: "rgba(255, 255, 255, 0.9)"
+          - type: string
+            name: background
+            label: Background Color
+            default: "#1a2132"
+          - type: string
+            name: backgroundLighten10
+            label: Primary Accent Color
+            description: "The color used on actively selected podcast episode entries, and the lines that seperate different sections of the theme"
+            default: "#232B3B"
+          - type: string
+            name: backgroundLighten20
+            label: Episode Progress Bar Background Color
+            default: "#2C3648"
+          - type: string
+            name: primaryDarken
+            label: Placeholder Image Gradient Color 1
+            description: "The primary color used to generate the gradient placeholder image for episodes with no image set"
+            default: "#7A5EFF"
+            - type: string
+              name: primaryLighten50
+              label: Placeholder Image Gradient Color 2
+              description: "The secondary color used to generate the gradient placeholder image for episodes with no image set"
+              default: "#B298FF"
+          - type: string
+            name: primary
+            label: Secondary Accent Color
+            description: "The color used for the podcast name and the left border of selected episodes"
+            default: "#A085FF"
+          - type: string
+            name: primaryLighten10
+            label: primaryLighten10
+            hidden: true
+            default: "#9D82FF"
+          - type: string
+            name: primaryLighten70
+            label: Link Hover Color
+            description: "The color of link text when hovered over"
+            default: "#D2C8FF"
+          - type: string
+            name: secondary
+            label: Secondary
+            hidden: true
+            default: "#85FFD0"
+  episode:
+    type: page
+    label: Episode
+    folder: episodes
+    layout: episode
+    fields:
+      - type: string
+        name: id
+        label: ID
+        required: true
+      - type: string
+        name: summary
+        label: Summary
+        description: The summary displayed below the episode title
+      - type: list
+        name: resources
+        label: Resource Links
+        description: The links displayed in the resources section of the sidebar (unst use markdown)
+        items:
+          type: markdown
+      - type: string
+        name: guestName
+        label: Guest Name
+        description: The name of the guest appearing in the episode
+      - type: markdown
+        name: guestSummary
+        label: Guest Summary
+        description: The summary displayed below the guest name
+      - type: image
+        name: image
+        label: Episode Image
+        description: The image thumbnail used for the episode
+      - type: image
+        name: guestPhoto
+        label: Guest Photo
+        description: The photo placed above the guest name in the sidebar
